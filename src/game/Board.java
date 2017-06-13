@@ -4,7 +4,7 @@ public class Board {
     private Cell[][] cells;
 
     public Board() {
-        cells = new Cell[3][3];
+        this.cells = new Cell[3][3];
     }
 
     public void init() {
@@ -20,70 +20,70 @@ public class Board {
     }
 
     public boolean hasWon(){
-//        cells[0][0].setContent(Seed.NOUGHT);
-//        cells[0][1].setContent(Seed.CROSS);
-//        cells[0][2].setContent(Seed.EMPTY);
-//        cells[1][0].setContent(Seed.EMPTY);
-//        cells[1][1].setContent(Seed.EMPTY);
-//        cells[1][2].setContent(Seed.EMPTY);
-//        cells[2][0].setContent(Seed.CROSS);
-//        cells[2][1].setContent(Seed.CROSS);
-//        cells[2][2].setContent(Seed.CROSS);
+//        this.cells[0][0].setContent(Seed.NOUGHT);
+//        this.cells[0][1].setContent(Seed.CROSS);
+//        this.cells[0][2].setContent(Seed.EMPTY);
+//        this.cells[1][0].setContent(Seed.EMPTY);
+//        this.cells[1][1].setContent(Seed.EMPTY);
+//        this.cells[1][2].setContent(Seed.EMPTY);
+//        this.cells[2][0].setContent(Seed.CROSS);
+//        this.cells[2][1].setContent(Seed.CROSS);
+//        this.cells[2][2].setContent(Seed.CROSS);
 
 
         // CHECK ROW 1
-        if (cells[0][0].getContent().equals(cells[0][1].getContent())
-                && cells[0][1].getContent().equals(cells[0][2].getContent())
-                && cells[0][0].getContent() != Seed.EMPTY) {
+        if (this.cells[0][0].getContent().equals(this.cells[0][1].getContent())
+                && this.cells[0][1].getContent().equals(this.cells[0][2].getContent())
+                && this.cells[0][0].getContent() != Seed.EMPTY) {
             System.out.println("ROW1");
             return true;
         }
         // CHECK ROW 2
-        if (cells[1][0].getContent().equals(cells[1][1].getContent())
-            && cells[1][1].getContent().equals(cells[1][2].getContent())
-            && cells[1][0].getContent() != Seed.EMPTY) {
+        if (this.cells[1][0].getContent().equals(this.cells[1][1].getContent())
+            && this.cells[1][1].getContent().equals(this.cells[1][2].getContent())
+            && this.cells[1][0].getContent() != Seed.EMPTY) {
             System.out.println("ROW2");
             return true;
         }
         // CHECK ROW 3
-        if (cells[2][0].getContent().equals(cells[2][1].getContent())
-            && cells[2][1].getContent().equals(cells[2][2].getContent())
-            && cells[2][0].getContent() != Seed.EMPTY) {
+        if (this.cells[2][0].getContent().equals(this.cells[2][1].getContent())
+            && this.cells[2][1].getContent().equals(this.cells[2][2].getContent())
+            && this.cells[2][0].getContent() != Seed.EMPTY) {
             System.out.println("ROW3");
             return true;
         }
         // CHECK COLUMN 1
-        if (cells[0][0].getContent().equals(cells[1][0].getContent())
-            && cells[1][0].getContent().equals(cells[2][0].getContent())
-            && cells[0][0].getContent() != Seed.EMPTY) {
+        if (this.cells[0][0].getContent().equals(this.cells[1][0].getContent())
+            && this.cells[1][0].getContent().equals(this.cells[2][0].getContent())
+            && this.cells[0][0].getContent() != Seed.EMPTY) {
             System.out.println("COL1");
             return true;
         }
         // CHECK COLUMN 2
-        if (cells[0][1].getContent().equals(cells[1][1].getContent())
-            && cells[1][1].getContent().equals(cells[2][1].getContent())
-            && cells[0][1].getContent() != Seed.EMPTY) {
+        if (this.cells[0][1].getContent().equals(this.cells[1][1].getContent())
+            && this.cells[1][1].getContent().equals(this.cells[2][1].getContent())
+            && this.cells[0][1].getContent() != Seed.EMPTY) {
             System.out.println("COL2");
             return true;
         }
         // CHECK COLUMN 3
-        if (cells[0][2].getContent().equals(cells[1][2].getContent())
-            && cells[1][2].getContent().equals(cells[2][2].getContent())
-            && cells[0][2].getContent() != Seed.EMPTY) {
+        if (this.cells[0][2].getContent().equals(this.cells[1][2].getContent())
+            && this.cells[1][2].getContent().equals(this.cells[2][2].getContent())
+            && this.cells[0][2].getContent() != Seed.EMPTY) {
             System.out.println("COL3");
             return true;
         }
         // CHECK CANT LEFT
-        if (cells[0][0].getContent().equals(cells[1][1].getContent())
-            && cells[1][1].getContent().equals(cells[2][2].getContent())
-            && cells[0][0].getContent() != Seed.EMPTY) {
+        if (this.cells[0][0].getContent().equals(this.cells[1][1].getContent())
+            && this.cells[1][1].getContent().equals(this.cells[2][2].getContent())
+            && this.cells[0][0].getContent() != Seed.EMPTY) {
             System.out.println("CANT_LEFT");
             return true;
         }
         // CHECK CANT RIGHT
-        if (cells[0][2].getContent().equals(cells[1][1].getContent())
-            && cells[1][1].getContent().equals(cells[2][0].getContent())
-            && cells[0][2].getContent() != Seed.EMPTY) {
+        if (this.cells[0][2].getContent().equals(this.cells[1][1].getContent())
+            && this.cells[1][1].getContent().equals(this.cells[2][0].getContent())
+            && this.cells[0][2].getContent() != Seed.EMPTY) {
             System.out.println("CANT_RIGHT");
             return true;
         }
@@ -91,7 +91,7 @@ public class Board {
     }
 
     public Cell getCell(Integer row, Integer col) {
-        return cells[row][col];
+        return this.cells[row][col];
     }
 
 }
