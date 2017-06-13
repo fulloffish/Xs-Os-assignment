@@ -10,6 +10,8 @@ public class Game {
     }
 
     public void initGame(){
+        board = new Board();
+        currentState = GameState.PLAYING;
 
     }
 

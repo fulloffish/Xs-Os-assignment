@@ -8,8 +8,8 @@ public class Board {
     }
 
     public void init() {
-        for(int rowIndex =0; rowIndex <this.cells.length; rowIndex++){
-            for(int columnIndex =0; columnIndex< this.cells[rowIndex].length; columnIndex++) {
+        for(int rowIndex = 0; rowIndex < this.cells.length; rowIndex++){
+            for(int columnIndex = 0; columnIndex< this.cells[rowIndex].length; columnIndex++) {
                 this.cells[rowIndex][columnIndex] = new Cell(rowIndex, columnIndex);
             }
         }
@@ -20,9 +20,7 @@ public class Board {
     }
 
     public boolean hasWon(){
-        cells[0][0].setContent(Seed.CROSS);
-        cells[0][1].setContent(Seed.CROSS);
-        cells[0][2].setContent(Seed.CROSS);
+
         if (cells[0][0].getContent().equals(cells[0][1].getContent())
                 && cells[0][1].getContent().equals(cells[0][2].getContent())) {
             System.out.println("ROW1");

@@ -6,6 +6,6 @@ public class Main {
         Board board = new Board();
         board.init();
         board.hasWon();
-        System.out.println("Hello world");
+        System.out.println(board.getCell(1,1).getContent());
     }
 }
