@@ -3,20 +3,20 @@ package game;
 public class Cell {
     private int row;
     private int col;
-    Seed seed;
+    private Seed content;
 
 
-    public Cell(int row, int col){
+    public Cell(Integer row, Integer col){
       this.setRow(row);
       this.setCol(col);
     }
 
-    public Seed getSeed() {
-        return seed;
+    public Seed getContent() {
+        return content;
     }
 
-    public void setSeed(Seed seed) {
-        this.seed = seed;
+    public void setContent(Seed content) {
+        this.content = content;
     }
 
     public int getRow() {
