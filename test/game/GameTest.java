@@ -1,7 +1,71 @@
 package game;
 
+import exception.NotValidMove;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
+    private Game game;
+    private int sampleRow = 1;
+    private int sampleCol = 1;
+    Cell sampleCell;
 
+    @BeforeEach
+    public void setup() {
+        this.game = new Game();
+        this.game.initGame();
+        this.sampleCell = this.game.getBoard().getCell(sampleRow, sampleCol);
+    }
+
+    @Test
+    @DisplayName("CurrentPlayer is set by constructor")
+    public void testConstructorSetsCurrentPlayerInstanceVariable() {
+        Seed currentPlayer = Seed.CROSS;
+        this.game.setCurrentPlayer(currentPlayer);
+        assertEquals(currentPlayer, this.game.getCurrentPlayer() );
+    }
+
+    @Test
+    @DisplayName("InitGame() sets all instance variables")
+    public void testInitGameSetsAllInstanceVariables() {
+        assertAll("Every variable is set",
+                () -> assertNotNull(this.game.getCurrentPlayer()),
+                () -> assertNotNull(this.game.getCurrentState()),
+                () -> assertNotNull(this.game.getBoard()),
+                () -> assertNotNull(this.game.getBoard().getCell(1,1)));
+    }
+
+    @Test
+    @DisplayName("UpdateBoard() changes cell content")
+    public void testUpdateBoardSetsCellsInstanceVariable() {
+        Seed oldContent = sampleCell.getContent();
+        Seed newContent = Seed.CROSS;
+        this.game.updateBoard(newContent, sampleRow, sampleCol);
+        assertNotEquals(oldContent, newContent);
+    }
+
+    @Test
+    @DisplayName("UpdateBoard() does not change cell content when cell is not empty")
+    public void testDoesNotUpdateBoardWhenCellIsNotEmpty() {
+        sampleCell.setContent(Seed.CROSS);
+        Seed newContent = Seed.NOUGHT;
+        assertThrows(NotValidMove.class, () -> {
+            this.game.updateBoard(newContent, sampleRow, sampleCol);
+                }
+        );
+    }
+
+    @Test
+    @DisplayName("UpdateGameState() changes currentState instance variable")
+    public void testUpdateGameStateSetsCurrentStateInstanceVariable() {
+        GameState oldState = this.game.getCurrentState();
+        GameState newState = GameState.CROSS_WON;
+        this.game.updateGameState(newState);
+        assertNotEquals(oldState, newState);
+
+    }
 }
