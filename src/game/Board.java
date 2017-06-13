@@ -20,16 +20,6 @@ public class Board {
     }
 
     public boolean hasWon(){
-//        this.cells[0][0].setContent(Seed.NOUGHT);
-//        this.cells[0][1].setContent(Seed.CROSS);
-//        this.cells[0][2].setContent(Seed.EMPTY);
-//        this.cells[1][0].setContent(Seed.EMPTY);
-//        this.cells[1][1].setContent(Seed.EMPTY);
-//        this.cells[1][2].setContent(Seed.EMPTY);
-//        this.cells[2][0].setContent(Seed.CROSS);
-//        this.cells[2][1].setContent(Seed.CROSS);
-//        this.cells[2][2].setContent(Seed.CROSS);
-
 
         // CHECK ROW 1
         if (this.cells[0][0].getContent().equals(this.cells[0][1].getContent())
