@@ -6,7 +6,7 @@ public class Board {
     public final Integer COLS = 3;
 
     public Board() {
-        cells = new Cell[ROWS][COLS];
+        this.cells = new Cell[ROWS][COLS];
     }
 
     public void init() {
