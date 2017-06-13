@@ -3,7 +3,7 @@ package game;
 public class Cell {
     private int row;
     private int col;
-    Seed seed;
+    private Seed content;
 
 
     public Cell(int row, int col){
@@ -12,11 +12,11 @@ public class Cell {
     }
 
     public Seed getSeed() {
-        return seed;
+        return content;
     }
 
     public void setSeed(Seed seed) {
-        this.seed = seed;
+        this.content = seed;
     }
 
     public int getRow() {
