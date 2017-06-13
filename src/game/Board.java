@@ -19,7 +19,9 @@ public class Board {
         return true;
     }
 
-    public boolean hasWon(Seed seed, int row, int col){
+    public boolean hasWon(){
+
+
         return false;
     }
 
