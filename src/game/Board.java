@@ -22,7 +22,8 @@ public class Board {
     public boolean hasWon(){
 
         if (cells[0][0].getContent().equals(cells[0][1].getContent())
-                && cells[0][1].getContent().equals(cells[0][2].getContent())) {
+                && cells[0][1].getContent().equals(cells[0][2].getContent())
+                && cells[0][1].getContent() != Seed.EMPTY) {
             return true;
         }
         return false;

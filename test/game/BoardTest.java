@@ -44,4 +44,16 @@ class BoardTest {
         assertTrue(board.hasWon());
 
     }
+
+    @Test
+    @DisplayName("hasWon() method returns false if three Cells in a row are empty")
+    public void testHasWonReturnFalseIfThreeCellsAreEmpty(){
+
+        board.getCell(0,0).setContent(Seed.EMPTY);
+        board.getCell(0,1).setContent(Seed.EMPTY);
+        board.getCell(0,2).setContent(Seed.EMPTY);
+
+        assertFalse(board.hasWon());
+
+    }
 }
