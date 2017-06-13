@@ -10,12 +10,17 @@ public class Game {
     }
 
     public void initGame(){
-        board = new Board();
-        currentState = GameState.PLAYING;
+        this.board = new Board();
+        this.currentState = GameState.PLAYING;
 
     }
 
-    public void updateGameState(Seed seed, int row, int col){
+    public void updateBoard(Seed seed, int row, int col){
+        this.board.getCell(row, col).setContent(seed);
+    }
+
+    public void updateGameState(GameState currentState) {
+        this.currentState = currentState;
 
     }
 }
