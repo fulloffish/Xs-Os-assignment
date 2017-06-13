@@ -45,7 +45,7 @@ class CellTest {
 
 
     @Test
-    @DisplayName("Seed is get by Getter")
+    @DisplayName("Content is get by Getter")
     public void testIsSeedIsGetByGetter() {
         Cell cell = new Cell(1,1);
         cell.setContent(Seed.NOUGHT);
