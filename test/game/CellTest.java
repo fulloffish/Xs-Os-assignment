@@ -8,13 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CellTest {
 
-    private Integer sampleNumber1 = 0;
-    private Integer sampleNumber2 = 0;
     private Cell cell;
 
     @BeforeEach
     public void setUp() {
-        cell = new Cell(sampleNumber1, sampleNumber2);
+        cell = new Cell(null, null);
     }
 
     @Test
@@ -31,9 +29,10 @@ class CellTest {
     @Test
     @DisplayName("Clear method sets cell's content to 'EMPTY' ")
     public void testIfClearMethodRemovesCellsContent() {
-        Cell cell = new Cell(sampleNumber1, sampleNumber2);
+        Cell cell = new Cell(null, null);
+        cell.clear();
 
-        assertEquals("EMPTY", cell.clear());
+        assertEquals("EMPTY", cell.getSeed());
     }
 
     @Test
@@ -53,22 +52,5 @@ class CellTest {
         assertEquals("NOUGHT", cell.getSeed().toString());
     }
 
-    @Test
-    @DisplayName("Init fill cells list with Cells objects")
-    public void testIfInitSetsCellsInProperPlaces() {
-        cell.init();
-
-        assertAll("Every place filled",
-                () -> assertNotNull(cell.getCell(1, 1)),
-                () -> assertNotNull(cell.getCell(1, 1)),
-                () -> assertNotNull(cell.getCell(1, 1)),
-                () -> assertNotNull(cell.getCell(2, 2)),
-                () -> assertNotNull(cell.getCell(2, 2)),
-                () -> assertNotNull(cell.getCell(2, 2)),
-                () -> assertNotNull(cell.getCell(3, 3)),
-                () -> assertNotNull(cell.getCell(3, 3)),
-                () -> assertNotNull(cell.getCell(3, 3))
-        );
-    }
 
 }

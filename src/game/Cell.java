@@ -6,7 +6,7 @@ public class Cell {
     private Seed content;
 
 
-    public Cell(int row, int col){
+    public Cell(Integer row, Integer col){
       this.setRow(row);
       this.setCol(col);
     }
@@ -36,5 +36,7 @@ public class Cell {
     }
 
     public void clear() {
+        this.content = Seed.EMPTY;
     }
+
 }
