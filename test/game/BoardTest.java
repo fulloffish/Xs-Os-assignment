@@ -35,18 +35,13 @@ class BoardTest {
     @Test
     @DisplayName("IsDraw method checks if there is a draw")
     public void testFailsIfMethodReturnFalseAndAllContentsAreCrossOrNaughtAndHasWonIsTrue() {
-        BoardTest boardTest = new BoardTest();
-        boardTest.fillCellsWithAnySeed();
-
-        assertEquals(true, board.isDraw());
-    }
-
-    private void fillCellsWithAnySeed() {
-        for(int rowIndex = 0; rowIndex < board.ROWS; rowIndex++){
+        for(int rowIndex = 0; rowIndex < board.ROWS; rowIndex++) {
             for(int columnIndex = 0; columnIndex < board.COLS; columnIndex++) {
                 board.getCell(rowIndex, columnIndex).setContent(Seed.CROSS);
             }
         }
+
+        assertEquals(true, board.isDraw());
     }
 
     @Test
