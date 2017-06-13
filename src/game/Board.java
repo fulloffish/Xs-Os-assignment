@@ -19,7 +19,15 @@ public class Board {
         return true;
     }
 
-    public boolean hasWon(Seed seed, int row, int col){
+    public boolean hasWon(){
+        cells[0][0].setContent(Seed.CROSS);
+        cells[0][1].setContent(Seed.CROSS);
+        cells[0][2].setContent(Seed.CROSS);
+        if (cells[0][0].getContent().equals(cells[0][1].getContent())
+                && cells[0][1].getContent().equals(cells[0][2].getContent())) {
+            System.out.println("true");
+            return true;
+        }
         return false;
     }
 
