@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CellTest {
 
+    private Integer sampleNumber1 = 1;
+    private Integer sampleNumber2 = 2;
+
     @Test
     @DisplayName("Cell row and col are set by constructor")
     public void testConstructorSetsRowAndColNumber() {
@@ -19,9 +22,11 @@ class CellTest {
     }
 
     @Test
-    @DisplayName("Clear method removes cell's content")
+    @DisplayName("Clear method sets cell's content to 'EMPTY' ")
     public void testIfClearMethodRemovesCellsContent() {
+        Cell cell = new Cell(sampleNumber1, sampleNumber2);
 
+        assertEquals("EMPTY", cell.clear());
     }
 
 
