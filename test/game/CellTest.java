@@ -1,5 +1,6 @@
 package game;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,8 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CellTest {
 
+    private Cell cell;
+
+    @BeforeEach
+    public void setUp() {
+        cell = new Cell(null, null);
+    }
+
     @Test
-    @DisplayName("Cell row is set by constructor")
+    @DisplayName("Cell row and col are set by constructor")
     public void testConstructorSetsRowAndColNumber() {
         Cell cell = new Cell(1, 2);
 
@@ -19,12 +27,22 @@ class CellTest {
     }
 
     @Test
+    @DisplayName("Clear method sets cell's content to 'EMPTY' ")
+    public void testIfClearMethodRemovesCellsContent() {
+        Cell cell = new Cell(null, null);
+        cell.clear();
+
+        assertEquals("EMPTY", cell.getSeed());
+    }
+
+    @Test
     @DisplayName("Seed is set by Setter")
     public void testIsSeedIsSetBySetter() {
         Cell cell = new Cell(1,1);
         cell.setSeed(Seed.CROSS);
-        assertSame(cell.seed, cell.getSeed());
+        assertSame("CROSS", cell.getSeed().toString());
     }
+
 
     @Test
     @DisplayName("Seed is get by Getter")
@@ -33,5 +51,6 @@ class CellTest {
         cell.setSeed(Seed.NOUGHT);
         assertEquals("NOUGHT", cell.getSeed().toString());
     }
+
 
 }
