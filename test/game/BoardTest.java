@@ -3,7 +3,6 @@ package game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
@@ -34,4 +33,22 @@ class BoardTest {
                 () -> assertNotNull(board.getCell(2, 2))
         );
     }
+
+    @Test
+    @DisplayName("IsDraw method checks if there is a draw")
+    public void testFailsIfMethodReturnFalseAndAllContentsAreCrossOrNaughtAndHasWonIsTrue() {
+        BoardTest boardTest = new BoardTest();
+        boardTest.fillCellsWithAnySeed();
+
+        assertEquals(true, board.isDraw());
+    }
+
+    private void fillCellsWithAnySeed() {
+        for(int rowIndex = 0; rowIndex < board.ROWS; rowIndex++){
+            for(int columnIndex = 0; columnIndex < board.COLS; columnIndex++) {
+                board.getCell(rowIndex, columnIndex).setContent(Seed.CROSS);
+            }
+        }
+    }
+
 }
