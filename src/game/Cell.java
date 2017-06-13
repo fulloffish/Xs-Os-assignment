@@ -11,12 +11,12 @@ public class Cell {
       this.setCol(col);
     }
 
-    public Seed getSeed() {
+    public Seed getContent() {
         return content;
     }
 
-    public void setSeed(Seed seed) {
-        this.content = seed;
+    public void setContent(Seed content) {
+        this.content = content;
     }
 
     public int getRow() {
