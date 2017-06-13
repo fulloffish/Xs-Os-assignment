@@ -3,11 +3,16 @@ package game;
 public class Cell {
     private int row;
     private int col;
+    Seed seed;
 
 
     public Cell(int row, int col){
       this.setRow(row);
       this.setCol(col);
+    }
+
+    public Seed getSeed() {
+        return seed;
     }
 
     public int getRow() {
