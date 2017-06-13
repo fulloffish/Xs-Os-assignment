@@ -23,15 +23,15 @@ class BoardTest {
         board.init();
 
         assertAll("Every place is filled",
+                () -> assertNotNull(board.getCell(0, 0)),
+                () -> assertNotNull(board.getCell(0, 1)),
+                () -> assertNotNull(board.getCell(0, 2)),
+                () -> assertNotNull(board.getCell(1, 0)),
                 () -> assertNotNull(board.getCell(1, 1)),
                 () -> assertNotNull(board.getCell(1, 2)),
-                () -> assertNotNull(board.getCell(1, 3)),
+                () -> assertNotNull(board.getCell(2, 0)),
                 () -> assertNotNull(board.getCell(2, 1)),
-                () -> assertNotNull(board.getCell(2, 2)),
-                () -> assertNotNull(board.getCell(2, 3)),
-                () -> assertNotNull(board.getCell(3, 1)),
-                () -> assertNotNull(board.getCell(3, 2)),
-                () -> assertNotNull(board.getCell(3, 3))
+                () -> assertNotNull(board.getCell(2, 2))
         );
     }
 }
