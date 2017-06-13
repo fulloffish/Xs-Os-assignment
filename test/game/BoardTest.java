@@ -8,19 +8,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
 
-    private Cell cell;
     private Board board;
 
     @BeforeEach
-    private void setUp() {
-        cell = new Cell(null, null);
+    public void setUp() {
         board = new Board();
+        board.init();
     }
 
     @Test
     @DisplayName("Init fill cells list with Cells objects")
     public void testIfInitSetsCellsInProperPlaces() {
-        board.init();
 
         assertAll("Every place is filled",
                 () -> assertNotNull(board.getCell(0, 0)),
@@ -33,5 +31,17 @@ class BoardTest {
                 () -> assertNotNull(board.getCell(2, 1)),
                 () -> assertNotNull(board.getCell(2, 2))
         );
+    }
+
+    @Test
+    @DisplayName("hasWon() method returns true if three Cells in a row are crosses")
+    public void testHasWonReturnTrueIfGameIsWon(){
+
+        board.getCell(0,0).setContent(Seed.CROSS);
+        board.getCell(0,1).setContent(Seed.CROSS);
+        board.getCell(0,2).setContent(Seed.CROSS);
+
+        assertTrue(board.hasWon());
+
     }
 }

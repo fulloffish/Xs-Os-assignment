@@ -9,6 +9,7 @@ public class Cell {
     public Cell(Integer row, Integer col){
       this.setRow(row);
       this.setCol(col);
+      this.setContent(Seed.EMPTY);
     }
 
     public Seed getContent() {
@@ -36,7 +37,7 @@ public class Cell {
     }
 
     public void clear() {
-        this.content = Seed.EMPTY;
+        this.setContent(Seed.EMPTY);
     }
 
 }
