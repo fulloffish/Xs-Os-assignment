@@ -1,5 +1,6 @@
 package game;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,8 +8,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CellTest {
 
-    private Integer sampleNumber1 = 1;
-    private Integer sampleNumber2 = 2;
+    private Integer sampleNumber1 = 0;
+    private Integer sampleNumber2 = 0;
+    private Cell cell;
+
+    @BeforeEach
+    public void setUp() {
+        cell = new Cell(sampleNumber1, sampleNumber2);
+    }
 
     @Test
     @DisplayName("Cell row and col are set by constructor")
@@ -29,23 +36,39 @@ class CellTest {
         assertEquals("EMPTY", cell.clear());
     }
 
+    @Test
+    @DisplayName("Seed is set by Setter")
+    public void testIsSeedIsSetBySetter() {
+        Cell cell = new Cell(1,1);
+        cell.setSeed(Seed.CROSS);
+        assertSame(cell.seed, cell.getSeed());
+    }
+
 
     @Test
-    @DisplayName("Author is set by constructor")
-    void testConstructorSetsAuthorInstanceVariable() {
-        String authorName = "Sourabh Sharma";
-        Author author = new Author(authorName);
-        Book book = new Book(null, author);
-
-        assertEquals(author, book.getAuthor());
+    @DisplayName("Seed is get by Getter")
+    public void testIsSeedIsGetByGetter() {
+        Cell cell = new Cell(1,1);
+        cell.setSeed(Seed.NOUGHT);
+        assertEquals("NOUGHT", cell.getSeed().toString());
     }
 
     @Test
-    @DisplayName("Summary is set by constructor")
-    void testConstructorSetsSummary() {
-        String summary = "This is book's summary";
-        Book book = new Book(null, null, summary);
+    @DisplayName("Init fill cells list with Cells objects")
+    public void testIfInitSetsCellsInProperPlaces() {
+        cell.init();
 
-        assertEquals(summary, book.getSummary());
+        assertAll("Every place filled",
+                () -> assertNotNull(cell.getCell(1, 1)),
+                () -> assertNotNull(cell.getCell(1, 1)),
+                () -> assertNotNull(cell.getCell(1, 1)),
+                () -> assertNotNull(cell.getCell(2, 2)),
+                () -> assertNotNull(cell.getCell(2, 2)),
+                () -> assertNotNull(cell.getCell(2, 2)),
+                () -> assertNotNull(cell.getCell(3, 3)),
+                () -> assertNotNull(cell.getCell(3, 3)),
+                () -> assertNotNull(cell.getCell(3, 3))
+        );
     }
+
 }
