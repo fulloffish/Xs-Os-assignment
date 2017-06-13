@@ -13,38 +13,25 @@ class CellTest {
         Cell cell = new Cell(1, 2);
 
         assertAll("Row and col number",
-                () -> assertEquals(1, cell.getRowNumber()),
-                () -> assertEquals(2, cell.getColNumber())
+                () -> assertEquals(1, cell.getRow()),
+                () -> assertEquals(2, cell.getCol())
         );
     }
 
-
-
     @Test
-    @DisplayName("Title is set by constructor")
-    void testConstructorSetsTitleInstanceVariable() {
-        String title = "Mastering Microservices with Java";
-        Book book = new Book(title, null);
-
-        assertEquals(title, book.getTitle());
+    @DisplayName("Seed is set by Setter")
+    public void testIsSeedIsSetBySetter() {
+        Cell cell = new Cell(1,1);
+        cell.setSeed(Seed.CROSS);
+        assertSame(cell.seed, cell.getSeed());
     }
 
     @Test
-    @DisplayName("Author is set by constructor")
-    void testConstructorSetsAuthorInstanceVariable() {
-        String authorName = "Sourabh Sharma";
-        Author author = new Author(authorName);
-        Book book = new Book(null, author);
-
-        assertEquals(author, book.getAuthor());
+    @DisplayName("Seed is get by Getter")
+    public void testIsSeedIsGetByGetter() {
+        Cell cell = new Cell(1,1);
+        cell.setSeed(Seed.NOUGHT);
+        assertEquals("NOUGHT", cell.getSeed().toString());
     }
 
-    @Test
-    @DisplayName("Summary is set by constructor")
-    void testConstructorSetsSummary() {
-        String summary = "This is book's summary";
-        Book book = new Book(null, null, summary);
-
-        assertEquals(summary, book.getSummary());
-    }
 }
