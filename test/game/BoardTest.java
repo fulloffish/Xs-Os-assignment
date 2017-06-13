@@ -56,4 +56,16 @@ class BoardTest {
         assertFalse(board.hasWon());
 
     }
+
+    @Test
+    @DisplayName("hasWon() method returns false if three Cells in a row has different seed")
+    public void testHasWonReturnFalseIfGameIsNotWon(){
+
+        board.getCell(0,0).setContent(Seed.CROSS);
+        board.getCell(0,1).setContent(Seed.NOUGHT);
+        board.getCell(0,2).setContent(Seed.CROSS);
+
+        assertFalse(board.hasWon());
+
+    }
 }

@@ -10,7 +10,7 @@ public class Board {
     public void init() {
         for(int rowIndex = 0; rowIndex < this.cells.length; rowIndex++){
             for(int columnIndex = 0; columnIndex< this.cells[rowIndex].length; columnIndex++) {
-                this.cells[rowIndex][columnIndex] = new Cell(rowIndex, columnIndex);
+                this.cells[rowIndex][columnIndex] = new Cell();
             }
         }
     }
