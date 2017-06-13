@@ -68,4 +68,12 @@ class BoardTest {
         assertFalse(board.hasWon());
 
     }
+
+    @Test
+    @DisplayName("Is get cell returns proper value")
+    public void testGetCellReturnsProperValue() {
+        board.getCell(0,1).setContent(Seed.CROSS);
+        assertEquals("CROSS", board.getCell(0,1).getContent().toString());
+
+    }
 }
