@@ -32,15 +32,15 @@ class CellTest {
         Cell cell = new Cell(null, null);
         cell.clear();
 
-        assertEquals("EMPTY", cell.getSeed());
+        assertEquals("EMPTY", cell.getContent());
     }
 
     @Test
     @DisplayName("Seed is set by Setter")
     public void testIsSeedIsSetBySetter() {
         Cell cell = new Cell(1,1);
-        cell.setSeed(Seed.CROSS);
-        assertSame("CROSS", cell.getSeed().toString());
+        cell.setContent(Seed.CROSS);
+        assertSame("CROSS", cell.getContent().toString());
     }
 
 
@@ -48,8 +48,8 @@ class CellTest {
     @DisplayName("Seed is get by Getter")
     public void testIsSeedIsGetByGetter() {
         Cell cell = new Cell(1,1);
-        cell.setSeed(Seed.NOUGHT);
-        assertEquals("NOUGHT", cell.getSeed().toString());
+        cell.setContent(Seed.NOUGHT);
+        assertEquals("NOUGHT", cell.getContent().toString());
     }
 
 
