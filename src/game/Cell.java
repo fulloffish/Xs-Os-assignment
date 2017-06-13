@@ -15,6 +15,10 @@ public class Cell {
         return seed;
     }
 
+    public void setSeed(Seed seed) {
+        this.seed = seed;
+    }
+
     public int getRow() {
         return row;
     }
