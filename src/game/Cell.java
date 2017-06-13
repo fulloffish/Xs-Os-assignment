@@ -36,5 +36,7 @@ public class Cell {
     }
 
     public void clear() {
+        this.content = Seed.EMPTY;
     }
+
 }

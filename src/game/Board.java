@@ -23,5 +23,8 @@ public class Board {
         return false;
     }
 
+    public Cell getCell(Integer row, Integer col) {
+        return cells[row][col];
+    }
 
 }
