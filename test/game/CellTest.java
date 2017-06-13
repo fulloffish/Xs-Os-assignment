@@ -41,7 +41,7 @@ class CellTest {
     public void testIsSeedIsSetBySetter() {
         Cell cell = new Cell(1,1);
         cell.setSeed(Seed.CROSS);
-        assertSame(cell.seed, cell.getSeed());
+        assertSame("CROSS", cell.getSeed().toString());
     }
 
 
