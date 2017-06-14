@@ -29,9 +29,9 @@ public class GameController {
                 row = input.getCoordinate(new IntegerAsker(System.in, System.out), game.getBoard().ROWS);
                 col = input.getCoordinate(new IntegerAsker(System.in, System.out), game.getBoard().COLS);
                 if (game.getCurrentPlayer() == Player.X) {
-                    game.updateBoard(Seed.CROSS, row, col);
+                    game.updateBoard(Seed.CROSS, row-1, col-1);
                 } else {
-                    game.updateBoard(Seed.NOUGHT, row, col);
+                    game.updateBoard(Seed.NOUGHT, row-1, col-1);
                 }
                 game.switchPlayer();
             } catch (InputMismatchException e) {
