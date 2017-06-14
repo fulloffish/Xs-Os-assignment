@@ -1,13 +1,12 @@
 import controller.GameController;
 
-/**
- * Created by krzysiek on 6/14/17.
- */
 public class Application {
     private GameController gameController;
     boolean playAgain;
 
-    private void mainGameLoop() {
+
+
+    public void run() {
         playAgain = true;
         gameController = new GameController();
         gameController.startGame();

@@ -1,7 +1,6 @@
 package game;
 
 import exception.NotValidMove;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ class GameTest {
     @Test
     @DisplayName("CurrentPlayer is set by constructor")
     public void testConstructorSetsCurrentPlayerInstanceVariable() {
-        Seed currentPlayer = Seed.CROSS;
+        Player currentPlayer = Player.O;
         this.game.setCurrentPlayer(currentPlayer);
         assertEquals(currentPlayer, this.game.getCurrentPlayer() );
     }
@@ -66,6 +65,15 @@ class GameTest {
         GameState newState = GameState.CROSS_WON;
         this.game.updateGameState(newState);
         assertNotEquals(oldState, newState);
-
     }
+
+    @Test
+    @DisplayName("Current player is switched")
+    public void testCurrentPlayerIsSwitched() {
+        Player currentPlayer = Player.O;
+        game.setCurrentPlayer(currentPlayer);
+        this.game.switchPlayer();
+        assertNotEquals(currentPlayer, this.game.getCurrentPlayer());
+    }
+
 }
