@@ -10,7 +10,6 @@ public class Application {
     }
 
     public void run() {
-
         this.setup();
         this.gameController.startGame();
         do {
