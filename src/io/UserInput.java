@@ -24,6 +24,7 @@ public class UserInput {
     public Character getInputYesOrNo() {
         Character input = scanner.next().charAt(0);
         Character response = Character.toUpperCase(input);
+        scanner.close();
         return response;
     }
 
