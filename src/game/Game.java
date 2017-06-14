@@ -7,16 +7,24 @@ import java.util.Random;
 public class Game {
     private Board board;
     private GameState currentState;
-    private Seed currentPlayer;
+    private Player currentPlayer;
 
     public Game(){
     }
 
-    public void setCurrentPlayer(Seed currentPlayer) {
+    public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
 
-    public Seed getCurrentPlayer() {
+    public void switchPlayer() {
+        if (currentPlayer == Player.X) {
+            currentPlayer = Player.O;
+        } else {
+            currentPlayer = Player.X;
+        }
+    }
+
+    public Player getCurrentPlayer() {
         return currentPlayer;
     }
 
@@ -49,13 +57,13 @@ public class Game {
         this.currentState = currentState;
     }
 
-    private Seed getFirstPlayer() {
+    private Player getFirstPlayer() {
         Random generator = new Random();
         int i = generator.nextInt(1);
 
         if(i == 0) {
-            return Seed.CROSS;
+            return Player.X;
         }
-        return Seed.NOUGHT;
+        return Player.O;
     }
 }

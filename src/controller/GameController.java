@@ -1,14 +1,19 @@
 package controller;
 
-import game.Game;
-import game.GameState;
-import game.Seed;
+import game.*;
+import io.UserInput;
+import io.UserOutput;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by krzysiek on 6/14/17.
  */
 public class GameController {
     private Game game;
+    private UserOutput output = new UserOutput();
+    private UserInput input = new UserInput();
 
     public void startGame() {
         game = new Game();
@@ -16,10 +21,18 @@ public class GameController {
     }
 
     public void play() {
-        // print kto zaczyna
+        Integer row;
+        Integer col;
+        output.printWhoStarts(game.getCurrentPlayer());
         while(game.getCurrentState().equals(GameState.PLAYING)) {
-            // zacznij
-
+            output.printCurrentPlayer(game.getCurrentPlayer(), game.getBoard().ROWS, game.getBoard().COLS);
+            row = input.getCoordinate(game.getBoard().ROWS);
+            col = input.getCoordinate(game.getBoard().COLS);
+            if (game.getCurrentPlayer() == Player.X) {
+                game.updateBoard(Seed.CROSS, row, col);
+            } else {
+                game.updateBoard(Seed.NOUGHT, row, col);
+            }
         }
     }
 
