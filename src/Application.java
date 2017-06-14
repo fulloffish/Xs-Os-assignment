@@ -12,7 +12,6 @@ public class Application {
         gameController.startGame();
 
         do {
-
             gameController.play();
             playAgain = gameController.wantToPlayAgain();
         }
