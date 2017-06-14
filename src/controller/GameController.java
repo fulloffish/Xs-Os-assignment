@@ -47,10 +47,12 @@ public class GameController {
             if (!game.getBoard().hasWon()) {
                 if (game.getBoard().isDraw()) {
                     output.printThereIsADraw();
+                    break;
                 }
+            } else {
+                output.printWhoWon(game.getCurrentPlayer());
             }
         }
-        output.printWhoWon(game.getCurrentPlayer());
     }
 
     private void setUpdateGameState() {
