@@ -2,7 +2,7 @@ package controller;
 
 import exception.NotValidMove;
 import game.*;
-import io.IntegerAsker;
+import io.InputAsker;
 import io.UserInput;
 import io.UserOutput;
 
@@ -28,8 +28,8 @@ public class GameController {
             output.printCurrentPlayer(game.getCurrentPlayer(), game.getBoard().ROWS, game.getBoard().COLS);
 
             try {
-                row = input.getCoordinate(new IntegerAsker(System.in, System.out), game.getBoard().ROWS);
-                col = input.getCoordinate(new IntegerAsker(System.in, System.out), game.getBoard().COLS);
+                row = input.getCoordinate(new InputAsker(System.in, System.out), game.getBoard().ROWS);
+                col = input.getCoordinate(new InputAsker(System.in, System.out), game.getBoard().COLS);
                 if (game.getCurrentPlayer() == Player.X) {
                     game.updateBoard(Seed.CROSS, row-1, col-1);
                 } else {
@@ -66,7 +66,7 @@ public class GameController {
 
     public boolean wantToPlayAgain() {
         output.printDoYouWantToPlayAgain();
-        Character response = input.getInputYesOrNo();
+        Character response = input.getInputYesOrNo(new InputAsker(System.in, System.out));
         if(response.toString().equals("Y")) {
             return true;
         }

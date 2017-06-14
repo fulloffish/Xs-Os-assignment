@@ -1,5 +1,6 @@
 package io;
 
+import jdk.internal.util.xml.impl.Input;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,8 +20,8 @@ class UserInputTest {
     @Test
     @DisplayName("GetCoordinate() returns integer when within bounds")
     public void testGetCoordinateReturnsIntegerWhenWithinBounds() {
-        IntegerAsker asker = mock(IntegerAsker.class);
-        when(asker.ask(anyString())).thenReturn(3);
+        InputAsker asker = mock(InputAsker.class);
+        when(asker.askForInteger(anyString())).thenReturn(3);
         Integer maximum = 3;
         assertEquals(3, (int)input.getCoordinate(asker, maximum));
     }
@@ -31,11 +32,11 @@ class UserInputTest {
        Integer maximum = 5;
        Integer integerOverMaximum = 6;
        Integer validInteger = 1;
-       IntegerAsker asker = mock(IntegerAsker.class);
-       when(asker.ask("Enter a number")).thenReturn(integerOverMaximum);
-       when(asker.ask("Not valid, try again")).thenReturn(validInteger);
+       InputAsker asker = mock(InputAsker.class);
+       when(asker.askForInteger("Enter a number")).thenReturn(integerOverMaximum);
+       when(asker.askForInteger("Not valid, try again")).thenReturn(validInteger);
        input.getCoordinate(asker, maximum);
-       verify(asker).ask("Not valid, try again");
+       verify(asker).askForInteger("Not valid, try again");
 
    }
 
