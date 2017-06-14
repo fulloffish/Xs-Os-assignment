@@ -1,24 +1,20 @@
 package io;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-/**
- * Created by krzysiek on 6/14/17.
- */
 public class UserInput {
-    Scanner scanner = new Scanner(System.in);
 
-
-    public Integer getCoordinate(Integer maximum) {
-        // print
-        Integer coordinate = scanner.nextInt();
-        while(coordinate < 1 && coordinate > maximum) {
-            coordinate = scanner.nextInt();
+    public Integer getCoordinate(IntegerAsker asker, Integer maximum) {
+        Integer coordinate = asker.ask("Enter a number: ");
+        while(!this.isInputValid(maximum, coordinate)) {
+            coordinate = asker.ask("Not valid, try again");
         }
-        scanner.close();
         return coordinate;
+    }
+
+    private boolean isInputValid(Integer maximum, Integer coordinate) {
+        if(coordinate < 1 || coordinate > maximum) {
+            return false;
+        }
+        return true;
     }
 
 }

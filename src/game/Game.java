@@ -58,10 +58,7 @@ public class Game {
     }
 
     private Player getFirstPlayer() {
-        Random generator = new Random();
-        int i = generator.nextInt(1);
-
-        if(i == 0) {
+        if(new Random().nextInt(2) == 0) {
             return Player.X;
         }
         return Player.O;
