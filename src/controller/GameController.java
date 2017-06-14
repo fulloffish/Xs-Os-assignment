@@ -33,6 +33,31 @@ public class GameController {
             } else {
                 game.updateBoard(Seed.NOUGHT, row, col);
             }
+//        game.getBoard().getCell(0,0).setContent(Seed.CROSS);
+//        game.getBoard().getCell(0,1).setContent(Seed.NOUGHT);
+//        game.getBoard().getCell(0,2).setContent(Seed.EMPTY);
+//        game.getBoard().getCell(1,0).setContent(Seed.NOUGHT);
+//        game.getBoard().getCell(1,1).setContent(Seed.CROSS);
+//        game.getBoard().getCell(1,2).setContent(Seed.NOUGHT);
+//        game.getBoard().getCell(2,0).setContent(Seed.NOUGHT);
+//        game.getBoard().getCell(2,1).setContent(Seed.NOUGHT);
+//        game.getBoard().getCell(2,2).setContent(Seed.EMPTY);
+            output.showBoard(game.getBoard());
+            this.setUpdateGameState();
+            if (!game.getBoard().hasWon()) {
+                if (game.getBoard().isDraw()) {
+                    output.printThereIsADraw();
+                }
+            }
+        }
+        output.printWhoWon(game.getCurrentPlayer());
+    }
+
+    private void setUpdateGameState() {
+        if (game.getCurrentPlayer() == Player.X) {
+            game.updateGameState(GameState.CROSS_WON);
+        } else {
+            game.updateGameState(GameState.NOUGHT_WON);
         }
     }
 

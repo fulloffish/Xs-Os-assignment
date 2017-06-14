@@ -13,7 +13,6 @@ public class Application {
         // gameController.wantToPlayAgain();
 
         do {
-
             gameController.play();
             playAgain = gameController.wantToPlayAgain();
         }
