@@ -14,11 +14,17 @@ public class UserInput {
     public Integer getCoordinate(Integer maximum) {
         // print
         Integer coordinate = scanner.nextInt();
-        while(coordinate < 1 && coordinate > maximum) {
+        while (coordinate < 1 && coordinate > maximum) {
             coordinate = scanner.nextInt();
         }
         scanner.close();
         return coordinate;
+    }
+
+    public Character getInputYesOrNo() {
+        Character input = scanner.next().charAt(0);
+        Character response = Character.toUpperCase(input);
+        return response;
     }
 
 }

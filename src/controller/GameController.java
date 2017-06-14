@@ -37,10 +37,12 @@ public class GameController {
     }
 
     public boolean wantToPlayAgain() {
-        // scaner input y n, ify
+        output.printDoYouWantToPlayAgain();
+        Character response = input.getInputYesOrNo();
+        if(response.toString().equals("Y")) {
+            return true;
+        }
         return false;
-
     }
-
 
 }

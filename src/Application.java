@@ -10,6 +10,7 @@ public class Application {
         playAgain = true;
         gameController = new GameController();
         gameController.startGame();
+        // gameController.wantToPlayAgain();
 
         do {
 
