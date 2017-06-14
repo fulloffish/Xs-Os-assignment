@@ -47,6 +47,7 @@ public class UserOutput {
         for(int i = 0; i < 4*board.COLS + 1; i++) {
             dashes += "-";
         }
+        dashes += "\n";
         return dashes;
     }
 }

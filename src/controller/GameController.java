@@ -21,30 +21,34 @@ public class GameController {
     }
 
     public void play() {
-//        Integer row;
-//        Integer col;
-//        output.printWhoStarts(game.getCurrentPlayer());
-//        while(game.getCurrentState().equals(GameState.PLAYING)) {
-//            output.printCurrentPlayer(game.getCurrentPlayer(), game.getBoard().ROWS, game.getBoard().COLS);
-//            row = input.getCoordinate(game.getBoard().ROWS);
-//            col = input.getCoordinate(game.getBoard().COLS);
-//            if (game.getCurrentPlayer() == Player.X) {
-//                game.updateBoard(Seed.CROSS, row, col);
-//            } else {
-//                game.updateBoard(Seed.NOUGHT, row, col);
-//            }
-        game.getBoard().getCell(0,0).setContent(Seed.CROSS);
-        game.getBoard().getCell(0,1).setContent(Seed.NOUGHT);
-        game.getBoard().getCell(0,2).setContent(Seed.EMPTY);
-        game.getBoard().getCell(1,0).setContent(Seed.NOUGHT);
-        game.getBoard().getCell(1,1).setContent(Seed.CROSS);
-        game.getBoard().getCell(1,2).setContent(Seed.NOUGHT);
-        game.getBoard().getCell(2,0).setContent(Seed.NOUGHT);
-        game.getBoard().getCell(2,1).setContent(Seed.NOUGHT);
-        game.getBoard().getCell(2,2).setContent(Seed.EMPTY);
+        Integer row;
+        Integer col;
+        output.printWhoStarts(game.getCurrentPlayer());
+        while(game.getCurrentState().equals(GameState.PLAYING)) {
+            output.printCurrentPlayer(game.getCurrentPlayer(), game.getBoard().ROWS, game.getBoard().COLS);
+            row = input.getCoordinate(game.getBoard().ROWS);
+            col = input.getCoordinate(game.getBoard().COLS);
+            if (game.getCurrentPlayer() == Player.X) {
+                game.updateBoard(Seed.CROSS, row, col);
+            } else {
+                game.updateBoard(Seed.NOUGHT, row, col);
+            }
+//        game.getBoard().getCell(0,0).setContent(Seed.CROSS);
+//        game.getBoard().getCell(0,1).setContent(Seed.NOUGHT);
+//        game.getBoard().getCell(0,2).setContent(Seed.EMPTY);
+//        game.getBoard().getCell(1,0).setContent(Seed.NOUGHT);
+//        game.getBoard().getCell(1,1).setContent(Seed.CROSS);
+//        game.getBoard().getCell(1,2).setContent(Seed.NOUGHT);
+//        game.getBoard().getCell(2,0).setContent(Seed.NOUGHT);
+//        game.getBoard().getCell(2,1).setContent(Seed.NOUGHT);
+//        game.getBoard().getCell(2,2).setContent(Seed.EMPTY);
             output.showBoard(game.getBoard());
+            if (game.getBoard().hasWon()) {
+
+                game.updateGameState(GameState.CROSS_WON);
+            }
         }
-//    }
+    }
 
     public boolean wantToPlayAgain() {
         // scaner input y n, ify
