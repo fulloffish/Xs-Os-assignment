@@ -15,7 +15,7 @@ public class Application {
         this.gameController.startGame();
         do {
             this.gameController.play();
-            playAgain = gameController.wantToPlayAgain();
+            this.playAgain = gameController.wantToPlayAgain();
         }
         while(playAgain);
     }
