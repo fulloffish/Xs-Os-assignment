@@ -10,13 +10,12 @@ import game.Seed;
 public class GameController {
     private Game game;
 
-    private void startGame() {
+    public void startGame() {
         game = new Game();
         game.initGame();
     }
 
-    private void play() {
-        this.startGame();
+    public void play() {
         // print kto zaczyna
         while(game.getCurrentState().equals(GameState.PLAYING)) {
             // zacznij
@@ -24,7 +23,11 @@ public class GameController {
         }
     }
 
-    private void
+    public boolean wantToPlayAgain() {
+        // scaner input y n, ify
+        return false;
+
+    }
 
 
 }
