@@ -46,4 +46,16 @@ public class UserOutput {
         dashes += "\n";
         return dashes;
     }
+
+    public void printWhoWon(Player player) {
+        if (player == player.X) {
+            System.out.println("Player X wins!");
+        } else {
+            System.out.println("Player O wins!");
+        }
+    }
+
+    public void printThereIsADraw() {
+        System.out.println("End of game. Draw!");
+    }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import exception.NotValidMove;
 import game.*;
 import io.IntegerAsker;
 import io.UserInput;
@@ -25,6 +26,7 @@ public class GameController {
         output.printWhoStarts(game.getCurrentPlayer());
         while (game.getCurrentState().equals(GameState.PLAYING)) {
             output.printCurrentPlayer(game.getCurrentPlayer(), game.getBoard().ROWS, game.getBoard().COLS);
+
             try {
                 row = input.getCoordinate(new IntegerAsker(System.in, System.out), game.getBoard().ROWS);
                 col = input.getCoordinate(new IntegerAsker(System.in, System.out), game.getBoard().COLS);
@@ -33,27 +35,34 @@ public class GameController {
                 } else {
                     game.updateBoard(Seed.NOUGHT, row-1, col-1);
                 }
-                game.switchPlayer();
+
             } catch (InputMismatchException e) {
                 System.out.println("This is not a number, try again.");
+            } catch (NotValidMove ex) {
+                ex.getMessage();
             }
-//        game.getBoard().getCell(0,0).setContent(Seed.CROSS);
-//        game.getBoard().getCell(0,1).setContent(Seed.NOUGHT);
-//        game.getBoard().getCell(0,2).setContent(Seed.EMPTY);
-//        game.getBoard().getCell(1,0).setContent(Seed.NOUGHT);
-//        game.getBoard().getCell(1,1).setContent(Seed.CROSS);
-//        game.getBoard().getCell(1,2).setContent(Seed.NOUGHT);
-//        game.getBoard().getCell(2,0).setContent(Seed.NOUGHT);
-//        game.getBoard().getCell(2,1).setContent(Seed.NOUGHT);
-//        game.getBoard().getCell(2,2).setContent(Seed.EMPTY);
             output.showBoard(game.getBoard());
-            if (game.getBoard().hasWon()) {
 
-                game.updateGameState(GameState.CROSS_WON);
+            if (!game.getBoard().hasWon()) {
+                if (game.getBoard().isDraw()) {
+                    output.printThereIsADraw();
+                    game.updateGameState(GameState.DRAW);
+                }
+            } else {
+                output.printWhoWon(game.getCurrentPlayer());
+                this.setUpdateGameState();
             }
+            game.switchPlayer();
         }
     }
 
+    private void setUpdateGameState() {
+        if (game.getCurrentPlayer() == Player.X) {
+            game.updateGameState(GameState.CROSS_WON);
+        } else {
+            game.updateGameState(GameState.NOUGHT_WON);
+        }
+    }
 
     public boolean wantToPlayAgain() {
         // scaner input y n, ify
