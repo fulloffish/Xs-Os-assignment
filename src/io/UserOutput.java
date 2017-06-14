@@ -22,7 +22,7 @@ public class UserOutput {
     public static char[] setBoard() {
         char[] board = new char[9];
         for (int i = 0; i < board.length; i++) {
-            board[i] = '-';
+            board[i] = ' ';
         }
         return board;
     }
@@ -30,13 +30,12 @@ public class UserOutput {
     public void showBoard() {
         this.board = setBoard();
         System.out.println();
-        System.out.println("||TIC TAC TOE||");
         for (int i = 0; i < board.length; i++) {
             if (i % 3 == 0 && i != 0) {
                 System.out.println();
                 System.out.println("------------");
             }
-            System.out.print(" | " + board[i]);
+            System.out.print(board[i] + " |");
         }
         System.out.println();
     }

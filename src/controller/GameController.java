@@ -18,6 +18,7 @@ public class GameController {
     public void startGame() {
         game = new Game();
         game.initGame();
+        output.showBoard();
     }
 
     public void play() {
