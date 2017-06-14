@@ -6,9 +6,7 @@ import io.InputAsker;
 import io.UserInput;
 import io.UserOutput;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 
 public class GameController {
     private Game game;
@@ -25,8 +23,8 @@ public class GameController {
         Integer col;
         output.printWhoStarts(game.getCurrentPlayer());
         while (game.getCurrentState().equals(GameState.PLAYING)) {
+            output.showBoard(game.getBoard());
             output.printCurrentPlayer(game.getCurrentPlayer(), game.getBoard().ROWS, game.getBoard().COLS);
-
             try {
                 row = input.getCoordinate(new InputAsker(System.in, System.out), game.getBoard().ROWS);
                 col = input.getCoordinate(new InputAsker(System.in, System.out), game.getBoard().COLS);
@@ -35,24 +33,15 @@ public class GameController {
                 } else {
                     game.updateBoard(Seed.NOUGHT, row-1, col-1);
                 }
+                game.switchPlayer();
 
             } catch (InputMismatchException e) {
                 System.out.println("This is not a number, try again.");
             } catch (NotValidMove ex) {
                 ex.getMessage();
             }
-            output.showBoard(game.getBoard());
 
-            if (!game.getBoard().hasWon()) {
-                if (game.getBoard().isDraw()) {
-                    output.printThereIsADraw();
-                    game.updateGameState(GameState.DRAW);
-                }
-            } else {
-                output.printWhoWon(game.getCurrentPlayer());
-                this.setUpdateGameState();
-            }
-            game.switchPlayer();
+        this.checkForWinner();
         }
     }
 
@@ -65,12 +54,27 @@ public class GameController {
     }
 
     public boolean wantToPlayAgain() {
-        output.printDoYouWantToPlayAgain();
         Character response = input.getInputYesOrNo(new InputAsker(System.in, System.out));
         if(response.toString().equals("Y")) {
+            game.updateGameState(GameState.PLAYING);
+            game.getBoard().clearAllCells();
             return true;
         }
         return false;
+    }
+
+    private void checkForWinner() {
+        if (!game.getBoard().hasWon()) {
+            if (game.getBoard().isDraw()) {
+                output.printThereIsADraw();
+                game.updateGameState(GameState.DRAW);
+            }
+        } else {
+            game.switchPlayer();
+            output.printWhoWon(game.getCurrentPlayer());
+            this.setUpdateGameState();
+        }
+
     }
 
 }
