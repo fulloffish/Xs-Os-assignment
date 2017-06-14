@@ -84,4 +84,13 @@ public class Board {
         return this.cells[row][col];
     }
 
+    public void clearAllCells() {
+        for(int rowIndex = 0; rowIndex < this.ROWS; rowIndex++){
+            for(int columnIndex = 0; columnIndex < this.COLS; columnIndex++) {
+                this.cells[rowIndex][columnIndex].clear();
+            }
+        }
+
+    }
+
 }

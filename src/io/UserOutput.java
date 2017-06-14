@@ -14,9 +14,9 @@ public class UserOutput {
         System.out.println("Player '" + player + "', enter your move (row[1-" + rows.toString() +"], column[1-" + cols.toString() + "]) ");
     }
 
-    public void printDoYouWantToPlayAgain() {
-        System.out.println("Do you want to play again? Y or N");
-    }
+//    public void printDoYouWantToPlayAgain() {
+//        System.out.println("Do you want to play again? Y or N");
+//    }
 
 
     public void showBoard(Board board) {
