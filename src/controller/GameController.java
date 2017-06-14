@@ -54,13 +54,18 @@ public class GameController {
     }
 
     public boolean wantToPlayAgain() {
+
         Character response = input.getInputYesOrNo(new InputAsker(System.in, System.out));
         if(response.toString().equals("Y")) {
-            game.updateGameState(GameState.PLAYING);
-            game.getBoard().clearAllCells();
+            startNewGame();
             return true;
         }
         return false;
+    }
+
+    private void startNewGame() {
+        game.updateGameState(GameState.PLAYING);
+        game.getBoard().clearAllCells();
     }
 
     private void checkForWinner() {
