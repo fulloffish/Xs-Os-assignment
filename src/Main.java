@@ -1,11 +1,11 @@
+import controller.GameController;
 import game.Board;
 
 public class Main {
 
     public static void main(String[] args) {
-        Board board = new Board();
-        board.init();
-        board.hasWon();
-        System.out.println(board.getCell(1,1).getContent());
+        GameController gameC = new GameController();
+        gameC.startGame();
+        gameC.play();
     }
 }

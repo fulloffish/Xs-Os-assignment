@@ -24,7 +24,7 @@ class GameTest {
     @Test
     @DisplayName("CurrentPlayer is set by constructor")
     public void testConstructorSetsCurrentPlayerInstanceVariable() {
-        Seed currentPlayer = Seed.CROSS;
+        Player currentPlayer = Player.X;
         this.game.setCurrentPlayer(currentPlayer);
         assertEquals(currentPlayer, this.game.getCurrentPlayer() );
     }
