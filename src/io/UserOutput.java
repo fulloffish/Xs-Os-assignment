@@ -18,6 +18,7 @@ public class UserOutput {
         System.out.println("Enter your move (row[1-" + rows.toString() +"], column[1-" + cols.toString() + "]: ");
     }
 
+
     public static char[] setBoard() {
         char[] board = new char[9];
         for (int i = 0; i < board.length; i++) {
@@ -39,5 +40,4 @@ public class UserOutput {
         }
         System.out.println();
     }
-
 }
