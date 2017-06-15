@@ -87,4 +87,22 @@ class BoardTest {
 
     }
 
+    @Test
+    @DisplayName("Clear all cells sets all Cells' content to EMPTY")
+    public void testClearSetsAllCellsContentToEmpty() {
+        board.getCell(0,1).setContent(Seed.CROSS);
+        board.clearAllCells();
+        assertAll("Every Cell's content is empty",
+                () -> assertEquals(Seed.EMPTY, board.getCell(0, 0).getContent()),
+                () -> assertEquals(Seed.EMPTY, board.getCell(0, 1).getContent()),
+                () -> assertEquals(Seed.EMPTY, board.getCell(0, 2).getContent()),
+                () -> assertEquals(Seed.EMPTY, board.getCell(1, 0).getContent()),
+                () -> assertEquals(Seed.EMPTY, board.getCell(1, 1).getContent()),
+                () -> assertEquals(Seed.EMPTY, board.getCell(1, 2).getContent()),
+                () -> assertEquals(Seed.EMPTY, board.getCell(2, 0).getContent()),
+                () -> assertEquals(Seed.EMPTY, board.getCell(2, 1).getContent()),
+                () -> assertEquals(Seed.EMPTY, board.getCell(2, 2).getContent())
+        );
+    }
+
 }

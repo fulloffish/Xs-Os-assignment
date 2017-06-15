@@ -18,7 +18,7 @@ public class UserInput {
     }
 
     public Character getInputYesOrNo(InputAsker asker) {
-        return Character.toUpperCase(asker.askForCharacter("Do you want to play again? Y or N"));
+        return asker.askForCharacter("Do you want to play again? Y or N");
     }
 }
 

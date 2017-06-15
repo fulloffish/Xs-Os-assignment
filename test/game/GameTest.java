@@ -1,6 +1,6 @@
 package game;
 
-import exception.NotValidMove;
+import exception.NotValidMoveException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -52,7 +52,7 @@ class GameTest {
     public void testDoesNotUpdateBoardWhenCellIsNotEmpty() {
         sampleCell.setContent(Seed.CROSS);
         Seed newContent = Seed.NOUGHT;
-        assertThrows(NotValidMove.class, () -> {
+        assertThrows(NotValidMoveException.class, () -> {
             this.game.updateBoard(newContent, sampleRow, sampleCol);
                 }
         );

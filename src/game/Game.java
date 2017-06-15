@@ -1,6 +1,6 @@
 package game;
 
-import exception.NotValidMove;
+import exception.NotValidMoveException;
 
 import java.util.Random;
 
@@ -35,13 +35,12 @@ public class Game {
     public Board getBoard() {
         return board;
     }
-    //    public void changeCurrentPlayer
 
     public void initGame(){
         this.board = new Board();
         this.currentState = GameState.PLAYING;
         this.board.init();
-        this.currentPlayer = this.getFirstPlayer();
+        this.currentPlayer = this.randomlyGetFirstPlayer();
     }
 
     public void updateBoard(Seed seed, int row, int col) {
@@ -49,7 +48,7 @@ public class Game {
             this.board.getCell(row, col).setContent(seed);
         }
         else {
-            throw new NotValidMove();
+            throw new NotValidMoveException("O-ops, something is already there!");
         }
     }
 
@@ -57,7 +56,7 @@ public class Game {
         this.currentState = currentState;
     }
 
-    private Player getFirstPlayer() {
+    private Player randomlyGetFirstPlayer() {
         if(new Random().nextInt(2) == 0) {
             return Player.X;
         }
