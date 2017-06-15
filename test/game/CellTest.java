@@ -18,22 +18,25 @@ class CellTest {
     @Test
     @DisplayName("Clear method sets cell's content to 'EMPTY' ")
     public void testIfClearMethodRemovesCellsContent() {
-        cell.clear();
-        assertEquals("EMPTY", cell.getContent().toString());
+        Seed expected = Seed.EMPTY;
+        this.cell.clear();
+        assertEquals(expected, cell.getContent());
     }
 
     @Test
     @DisplayName("Content is set by Setter")
     public void testIsSeedIsSetBySetter() {
-        cell.setContent(Seed.CROSS);
-        assertSame("CROSS", cell.getContent().toString());
+        Seed seedToBeSet = Seed.CROSS;
+        this.cell.setContent(seedToBeSet);
+        assertSame(seedToBeSet, cell.getContent());
     }
 
     @Test
     @DisplayName("Content is get by Getter")
     public void testIsSeedIsGetByGetter() {
-        cell.setContent(Seed.NOUGHT);
-        assertEquals("NOUGHT", cell.getContent().toString());
+        Seed seedToBeGotten = Seed.NOUGHT;
+        this.cell.setContent(seedToBeGotten);
+        assertEquals(seedToBeGotten, cell.getContent());
     }
 
 }

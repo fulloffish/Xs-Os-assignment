@@ -14,16 +14,9 @@ public class UserOutput {
         System.out.println("Player '" + player + "', enter your move (row[1-" + rows.toString() +"], column[1-" + cols.toString() + "]) ");
     }
 
-//    public void printDoYouWantToPlayAgain() {
-//        System.out.println("Do you want to play again? Y or N");
-//    }
-
-
     public void showBoard(Board board) {
         for(Integer rowIndex = 0; rowIndex < board.ROWS; rowIndex++){
-//            System.out.println("Row: " + rowIndex.toString());
             for(Integer columnIndex = 0; columnIndex < board.COLS; columnIndex++) {
-//                System.out.println("Column: " + columnIndex.toString());
                 if (board.getCell(rowIndex, columnIndex).getContent().equals(Seed.EMPTY)) {
                     System.out.printf("|   ");
                 } else if (board.getCell(rowIndex, columnIndex).getContent().equals(Seed.CROSS)) {
@@ -36,7 +29,6 @@ public class UserOutput {
                 }
             }
             if (rowIndex != board.ROWS - 1) {
-
                 System.out.println(this.getDashes(board));
             }
         }
@@ -61,5 +53,9 @@ public class UserOutput {
 
     public void printThereIsADraw() {
         System.out.println("End of game. Draw!");
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }

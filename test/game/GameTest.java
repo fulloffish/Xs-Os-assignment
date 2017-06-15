@@ -1,6 +1,6 @@
 package game;
 
-import exception.NotValidMove;
+import exception.NotValidMoveException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ class GameTest {
     private Game game;
     private int sampleRow = 1;
     private int sampleCol = 1;
-    Cell sampleCell;
+    private Cell sampleCell;
 
     @BeforeEach
     public void setup() {
@@ -41,7 +41,7 @@ class GameTest {
     @Test
     @DisplayName("UpdateBoard() changes cell content")
     public void testUpdateBoardSetsCellsInstanceVariable() {
-        Seed oldContent = sampleCell.getContent();
+        Seed oldContent = this.sampleCell.getContent();
         Seed newContent = Seed.CROSS;
         this.game.updateBoard(newContent, sampleRow, sampleCol);
         assertNotEquals(oldContent, newContent);
@@ -50,9 +50,9 @@ class GameTest {
     @Test
     @DisplayName("UpdateBoard() does not change cell content when cell is not empty")
     public void testDoesNotUpdateBoardWhenCellIsNotEmpty() {
-        sampleCell.setContent(Seed.CROSS);
+        this.sampleCell.setContent(Seed.CROSS);
         Seed newContent = Seed.NOUGHT;
-        assertThrows(NotValidMove.class, () -> {
+        assertThrows(NotValidMoveException.class, () -> {
             this.game.updateBoard(newContent, sampleRow, sampleCol);
                 }
         );
@@ -70,10 +70,10 @@ class GameTest {
     @Test
     @DisplayName("Current player is switched")
     public void testCurrentPlayerIsSwitched() {
-        Player currentPlayer = Player.O;
-        game.setCurrentPlayer(currentPlayer);
+        Player playerBeforeSwitch = Player.O;
+        this.game.setCurrentPlayer(playerBeforeSwitch);
         this.game.switchPlayer();
-        assertNotEquals(currentPlayer, this.game.getCurrentPlayer());
+        assertNotEquals(playerBeforeSwitch, this.game.getCurrentPlayer());
     }
 
 }

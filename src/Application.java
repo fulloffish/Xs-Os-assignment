@@ -2,21 +2,21 @@ import controller.GameController;
 
 public class Application {
     private GameController gameController;
-    boolean playAgain;
+    boolean isGameOngoing;
 
     private void setup() {
-        this.playAgain = true;
+        this.isGameOngoing = true;
         this.gameController = new GameController();
     }
 
     public void run() {
         this.setup();
-        this.gameController.startGame();
+        this.gameController.setUpGame();
         do {
             this.gameController.play();
-            this.playAgain = gameController.wantToPlayAgain();
+            this.isGameOngoing = gameController.wantToPlayAgain();
         }
-        while(playAgain);
+        while(isGameOngoing);
     }
 
 }

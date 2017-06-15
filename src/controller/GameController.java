@@ -1,6 +1,6 @@
 package controller;
 
-import exception.NotValidMove;
+import exception.NotValidMoveException;
 import game.*;
 import io.InputAsker;
 import io.UserInput;
@@ -9,71 +9,93 @@ import java.util.InputMismatchException;
 
 public class GameController {
     private Game game;
-    private UserOutput output = new UserOutput();
-    private UserInput input = new UserInput();
+    private UserOutput output;
+    private UserInput input;
 
-    public void startGame() {
-        game = new Game();
-        game.initGame();
+    public void setUpGame() {
+        this.output  = new UserOutput();
+        this.input  = new UserInput();
+        this.game = new Game();
+        this.game.initGame();
     }
 
     public void play() {
-        Integer row;
-        Integer col;
-        output.printWhoStarts(game.getCurrentPlayer());
+
+        this.output.printWhoStarts(game.getCurrentPlayer());
         while (game.getCurrentState().equals(GameState.PLAYING)) {
-            output.showBoard(game.getBoard());
-            output.printCurrentPlayer(game.getCurrentPlayer(), game.getBoard().ROWS, game.getBoard().COLS);
+            this.handleBoardPrinting();
             try {
-                row = input.getCoordinate(new InputAsker(System.in, System.out), game.getBoard().ROWS);
-                col = input.getCoordinate(new InputAsker(System.in, System.out), game.getBoard().COLS);
-                if (game.getCurrentPlayer() == Player.X) {
-                    game.updateBoard(Seed.CROSS, row-1, col-1);
-                } else {
-                    game.updateBoard(Seed.NOUGHT, row-1, col-1);
-                }
-                game.switchPlayer();
+                this.gameAction();
+                this.game.switchPlayer();
 
-            } catch (InputMismatchException e) {
-                System.out.println("This is not a number, try again.");
-            } catch (NotValidMove ex) {
-                ex.getMessage();
+            } catch (InputMismatchException enteredLetter) {
+                this.output.printErrorMessage("This is not a number, try again.");
+            } catch (NotValidMoveException invalidMove) {
+                this.output.printErrorMessage(invalidMove.getMessage());
             }
-
         this.checkForWinner();
         }
     }
 
-    private void setUpdateGameState() {
-        if (game.getCurrentPlayer() == Player.X) {
-            game.updateGameState(GameState.CROSS_WON);
+    private void handleBoardPrinting() {
+        this.output.showBoard(game.getBoard());
+        this.output.printCurrentPlayer(game.getCurrentPlayer(), game.getBoard().ROWS, game.getBoard().COLS);
+    }
+
+    private void gameAction() {
+        Integer row;
+        Integer col;
+        row = this.input.getCoordinate(new InputAsker(System.in, System.out), game.getBoard().ROWS);
+        col = this.input.getCoordinate(new InputAsker(System.in, System.out), game.getBoard().COLS);
+        if (this.game.getCurrentPlayer() == Player.X) {
+            this.game.updateBoard(Seed.CROSS, row-1, col-1);
         } else {
-            game.updateGameState(GameState.NOUGHT_WON);
+            this.game.updateBoard(Seed.NOUGHT, row-1, col-1);
+        }
+    }
+
+    private void checkForWinner() {
+        if (!this.game.getBoard().hasWon()) {
+            if (this.game.getBoard().isDraw()) {
+                this.handleDraw();
+            }
+        } else {
+            this.handleWinning();
+        }
+    }
+
+    private void handleDraw() {
+        this.output.printThereIsADraw();
+        this.game.updateGameState(GameState.DRAW);
+    }
+
+    private void handleWinning() {
+        this.game.switchPlayer();
+        this.output.printWhoWon(game.getCurrentPlayer());
+        this.setUpdateGameStateAfterWinning();
+    }
+
+
+    private void setUpdateGameStateAfterWinning() {
+        if (this.game.getCurrentPlayer() == Player.X) {
+            this.game.updateGameState(GameState.CROSS_WON);
+        } else {
+            this.game.updateGameState(GameState.NOUGHT_WON);
         }
     }
 
     public boolean wantToPlayAgain() {
-        Character response = input.getInputYesOrNo(new InputAsker(System.in, System.out));
-        if(response.toString().equals("Y")) {
-            game.updateGameState(GameState.PLAYING);
-            game.getBoard().clearAllCells();
+        Character response = this.input.getInputYesOrNo(new InputAsker(System.in, System.out));
+        if(response.toString().toUpperCase().equals("Y")) {
+            this.startNewGame();
             return true;
         }
         return false;
     }
 
-    private void checkForWinner() {
-        if (!game.getBoard().hasWon()) {
-            if (game.getBoard().isDraw()) {
-                output.printThereIsADraw();
-                game.updateGameState(GameState.DRAW);
-            }
-        } else {
-            game.switchPlayer();
-            output.printWhoWon(game.getCurrentPlayer());
-            this.setUpdateGameState();
-        }
-
+    private void startNewGame() {
+        this.game.updateGameState(GameState.PLAYING);
+        this.game.getBoard().clearAllCells();
     }
 
 }
