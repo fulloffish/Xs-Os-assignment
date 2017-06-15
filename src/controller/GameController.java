@@ -32,7 +32,7 @@ public class GameController {
             } catch (InputMismatchException enteredLetter) {
                 this.output.printErrorMessage("This is not a number, try again.");
             } catch (NotValidMoveException invalidMove) {
-                invalidMove.getMessage();
+                this.output.printErrorMessage(invalidMove.getMessage());
             }
         this.checkForWinner();
         }
