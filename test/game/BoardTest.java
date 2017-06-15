@@ -11,8 +11,8 @@ class BoardTest {
 
     @BeforeEach
     public void setUp() {
-        board = new Board();
-        board.init();
+        this.board = new Board();
+        this.board.init();
     }
 
     @Test
@@ -33,75 +33,80 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("IsDraw method checks if there is a draw")
+    @DisplayName("IsDraw() method checks if there is a draw")
     public void testFailsIfMethodReturnFalseAndAllContentsAreCrossOrNaughtAndHasWonIsTrue() {
-        for(int rowIndex = 0; rowIndex < board.ROWS; rowIndex++) {
-            for(int columnIndex = 0; columnIndex < board.COLS; columnIndex++) {
-                board.getCell(rowIndex, columnIndex).setContent(Seed.CROSS);
+        fillAllCellsWithContentToMakeADraw();
+        assertTrue(this.board.isDraw());
+    }
+
+    private void fillAllCellsWithContentToMakeADraw() {
+        for (int rowIndex = 0; rowIndex < board.ROWS; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < board.COLS; columnIndex++) {
+                this.board.getCell(rowIndex, columnIndex).setContent(Seed.CROSS);
             }
         }
-
-        assertEquals(true, board.isDraw());
     }
 
     @Test
     @DisplayName("hasWon() method returns true if three Cells in a row are crosses")
     public void testHasWonReturnTrueIfGameIsWon(){
-
-        board.getCell(0,0).setContent(Seed.CROSS);
-        board.getCell(0,1).setContent(Seed.CROSS);
-        board.getCell(0,2).setContent(Seed.CROSS);
-
-        assertTrue(board.hasWon());
-
+        Seed winningSeed = Seed.CROSS;
+        this.setCellsContentToGetWantedEffect(winningSeed);
+        assertTrue(this.board.hasWon());
     }
 
     @Test
     @DisplayName("hasWon() method returns false if three Cells in a row are empty")
     public void testHasWonReturnFalseIfThreeCellsAreEmpty(){
-
-        board.getCell(0,0).setContent(Seed.EMPTY);
-        board.getCell(0,1).setContent(Seed.EMPTY);
-        board.getCell(0,2).setContent(Seed.EMPTY);
-
+        Seed emptySeed = Seed.EMPTY;
+        this.setCellsContentToGetWantedEffect(emptySeed);
         assertFalse(board.hasWon());
+    }
 
+    private void setCellsContentToGetWantedEffect(Seed seed) {
+        this.board.getCell(0,0).setContent(seed);
+        this.board.getCell(0,1).setContent(seed);
+        this.board.getCell(0,2).setContent(seed);
     }
 
     @Test
     @DisplayName("hasWon() method returns false if three Cells in a row has different seed")
     public void testHasWonReturnFalseIfGameIsNotWon(){
 
-        board.getCell(0,0).setContent(Seed.CROSS);
-        board.getCell(0,1).setContent(Seed.NOUGHT);
-        board.getCell(0,2).setContent(Seed.CROSS);
+        this.board.getCell(0,0).setContent(Seed.CROSS);
+        this.board.getCell(0,1).setContent(Seed.NOUGHT);
+        this.board.getCell(0,2).setContent(Seed.CROSS);
 
         assertFalse(board.hasWon());
     }
 
     @Test
-    @DisplayName("Test is get cell returns proper value")
+    @DisplayName("GetCell() returns proper cell")
     public void testGetCellReturnsProperValue() {
-        board.getCell(0,1).setContent(Seed.CROSS);
-        assertEquals("CROSS", board.getCell(0,1).getContent().toString());
-
+        Cell sampleCell = this.board.getCell(0,1);
+        Seed sampleSeed = Seed.CROSS;
+        sampleCell.setContent(sampleSeed);
+        assertEquals(sampleSeed, sampleCell.getContent());
     }
 
     @Test
     @DisplayName("Clear all cells sets all Cells' content to EMPTY")
     public void testClearSetsAllCellsContentToEmpty() {
-        board.getCell(0,1).setContent(Seed.CROSS);
-        board.clearAllCells();
+        Cell sampleCell = this.board.getCell(0,1);
+        Seed contentToBeChangedByClearMethod = Seed.CROSS;
+        Seed expectedContent = Seed.EMPTY;
+        sampleCell.setContent(contentToBeChangedByClearMethod);
+        this.board.clearAllCells();
         assertAll("Every Cell's content is empty",
-                () -> assertEquals(Seed.EMPTY, board.getCell(0, 0).getContent()),
-                () -> assertEquals(Seed.EMPTY, board.getCell(0, 1).getContent()),
-                () -> assertEquals(Seed.EMPTY, board.getCell(0, 2).getContent()),
-                () -> assertEquals(Seed.EMPTY, board.getCell(1, 0).getContent()),
-                () -> assertEquals(Seed.EMPTY, board.getCell(1, 1).getContent()),
-                () -> assertEquals(Seed.EMPTY, board.getCell(1, 2).getContent()),
-                () -> assertEquals(Seed.EMPTY, board.getCell(2, 0).getContent()),
-                () -> assertEquals(Seed.EMPTY, board.getCell(2, 1).getContent()),
-                () -> assertEquals(Seed.EMPTY, board.getCell(2, 2).getContent())
+                () -> assertEquals(expectedContent, this.board.getCell(0, 0).getContent()),
+                () -> assertEquals(expectedContent, this.board.getCell(0, 1).getContent()),
+                () -> assertEquals(expectedContent, this.board.getCell(0, 2).getContent()),
+                () -> assertEquals(expectedContent, this.board.getCell(1, 0).getContent()),
+                () -> assertEquals(expectedContent, this.board.getCell(1, 1).getContent()),
+                () -> assertEquals(expectedContent, this.board.getCell(1, 2).getContent()),
+                () -> assertEquals(expectedContent, this.board.getCell(2, 0).getContent()),
+                () -> assertEquals(expectedContent, this.board.getCell(2, 1).getContent()),
+                () -> assertEquals(expectedContent, this.board.getCell(2, 2).getContent())
         );
     }
 
