@@ -2,9 +2,9 @@ package game;
 
 public class Board {
     private Cell[][] cells;
-    public Integer ROWS = 8; // Try to put it something different
-    public Integer COLS = 8; // Try to put it something different
-    public Integer SIGNS_TO_WIN = 5; // Try to put it something different
+    public final Integer ROWS = 8; // Try to put it something different
+    public final Integer COLS = 8; // Try to put it something different
+    public final Integer SIGNS_TO_WIN = 5; // Try to put it something different
 
     public Board() {
         this.cells = new Cell[ROWS][COLS];
