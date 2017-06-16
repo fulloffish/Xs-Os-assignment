@@ -20,12 +20,12 @@ public class GameController {
     }
 
     public void play() {
-
+        Cell usersMove = new Cell(null, null, null);
         this.output.printWhoStarts(game.getCurrentPlayer());
         while (game.getCurrentState().equals(GameState.PLAYING)) {
             this.handleBoardPrinting();
             try {
-                this.gameAction();
+                usersMove = this.gameAction();
                 this.game.switchPlayer();
 
             } catch (InputMismatchException enteredLetter) {
@@ -33,7 +33,7 @@ public class GameController {
             } catch (NotValidMoveException invalidMove) {
                 this.output.printErrorMessage(invalidMove.getMessage());
             }
-        this.checkForWinner();
+            this.checkForWinner(usersMove);
         }
     }
 
@@ -42,20 +42,22 @@ public class GameController {
         this.output.printCurrentPlayer(game.getCurrentPlayer(), game.getBoard().ROWS, game.getBoard().COLS);
     }
 
-    private void gameAction() {
+    private Cell gameAction() {
         Integer row;
         Integer col;
         row = this.input.getCoordinate(new InputAsker(System.in, System.out), game.getBoard().ROWS);
         col = this.input.getCoordinate(new InputAsker(System.in, System.out), game.getBoard().COLS);
         if (this.game.getCurrentPlayer() == Player.X) {
             this.game.updateBoard(Seed.CROSS, row-1, col-1);
+            return new Cell(row - 1, col - 1, Seed.CROSS);
         } else {
             this.game.updateBoard(Seed.NOUGHT, row-1, col-1);
+            return new Cell(row - 1, col - 1, Seed.NOUGHT);
         }
     }
 
-    private void checkForWinner() {
-        if (!this.game.getBoard().hasWon()) {
+    private void checkForWinner(Cell usersMove) {
+        if (!this.game.getBoard().hasWon(usersMove)) {
             if (this.game.getBoard().isDraw()) {
                 this.handleDraw();
             }

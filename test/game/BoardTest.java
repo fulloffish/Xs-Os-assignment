@@ -48,36 +48,26 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("hasWon() method returns true if three Cells in a row are crosses")
-    public void testHasWonReturnTrueIfGameIsWon(){
-        Seed winningSeed = Seed.CROSS;
-        this.setCellsContentToGetWantedEffect(winningSeed);
-        assertTrue(this.board.hasWon());
+    @DisplayName("hasWon() method returns true if SIGNS_TO_WIN Cells in a row are crosses")
+    public void testHasWonReturnTrueIfGameIsWon() {
+        Seed sampleWinningSeed = Seed.NOUGHT;
+        this.setSampleCellsContent();
+        assertTrue(this.board.hasWon(new Cell(0, 2, sampleWinningSeed)));
     }
+
 
     @Test
-    @DisplayName("hasWon() method returns false if three Cells in a row are empty")
-    public void testHasWonReturnFalseIfThreeCellsAreEmpty(){
-        Seed emptySeed = Seed.EMPTY;
-        this.setCellsContentToGetWantedEffect(emptySeed);
-        assertFalse(board.hasWon());
+    @DisplayName("hasWon() method returns false if there is no win")
+    public void testHasWonReturnFalseIfThereIsNoWin() {
+        Seed loosingSeed = Seed.CROSS;
+        this.setSampleCellsContent();
+        assertFalse(board.hasWon(new Cell(0, this.board.SIGNS_TO_WIN - 1, loosingSeed)));
     }
 
-    private void setCellsContentToGetWantedEffect(Seed seed) {
-        this.board.getCell(0,0).setContent(seed);
-        this.board.getCell(0,1).setContent(seed);
-        this.board.getCell(0,2).setContent(seed);
-    }
-
-    @Test
-    @DisplayName("hasWon() method returns false if three Cells in a row has different seed")
-    public void testHasWonReturnFalseIfGameIsNotWon(){
-
-        this.board.getCell(0,0).setContent(Seed.CROSS);
-        this.board.getCell(0,1).setContent(Seed.NOUGHT);
-        this.board.getCell(0,2).setContent(Seed.CROSS);
-
-        assertFalse(board.hasWon());
+    private void setSampleCellsContent() {
+        for (int i = 0; i < this.board.SIGNS_TO_WIN; i++) {
+            this.board.getCell(0, i).setContent(Seed.NOUGHT);
+        }
     }
 
     @Test
